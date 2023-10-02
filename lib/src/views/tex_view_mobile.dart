@@ -38,6 +38,7 @@ class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(Colors.transparent)
+      ..currentUrl()
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageFinished: (message) {
@@ -64,9 +65,7 @@ class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
       })
       ..addJavaScriptChannel('OnTapCallback', onMessageReceived: (jm) {
         widget.child.onTapCallback(jm.message);
-      })
-      ..loadRequest(Uri.parse(
-          "packages/flutter_tex/js/${widget.renderingEngine?.name ?? 'katex'}/index.html"));
+      });
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
@@ -75,7 +74,8 @@ class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
           .setMediaPlaybackRequiresUserGesture(false);
     }
     // #enddocregion platform_features
-
+    controller.loadFlutterAsset(
+        "packages/flutter_tex/js/${widget.renderingEngine?.name ?? 'katex'}/index.html");
     _controller = controller;
   }
 
