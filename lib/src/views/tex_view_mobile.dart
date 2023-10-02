@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutter_tex/src/utils/core_utils.dart';
-import 'package:webview_flutter_plus/webview_flutter_plus.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
-  WebViewPlusController? _controller;
+  WebViewController? _controller;
 
   double _height = minHeight;
   String? _lastData;
@@ -27,7 +27,7 @@ class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
       children: <Widget>[
         SizedBox(
           height: _height,
-          child: WebViewPlus(
+          child: WebView(
             onPageFinished: (message) {
               _pageLoaded = true;
               _initTeXView();
@@ -69,8 +69,7 @@ class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
   void _initTeXView() {
     if (_pageLoaded && _controller != null && getRawData(widget) != _lastData) {
       if (widget.loadingWidgetBuilder != null) _height = minHeight;
-      _controller!.webViewController
-          .runJavascript("initView(${getRawData(widget)})");
+      _controller!.runJavascript("initView(${getRawData(widget)})");
       _lastData = getRawData(widget);
     }
   }
