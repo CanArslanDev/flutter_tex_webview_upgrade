@@ -77,12 +77,12 @@ class _TeXViewInkWellExampleState extends State<TeXViewInkWellExample> {
             ),
             backgroundColor: Colors.white,
           ),
-          loadingWidgetBuilder: (context) => Center(
+          loadingWidgetBuilder: (context) => const Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
+                  children: <Widget>[
                     CircularProgressIndicator(),
                     Text("Rendering...")
                   ],

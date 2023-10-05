@@ -79,6 +79,7 @@ class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
     _controller = controller;
   }
 
+  @override
   bool get wantKeepAlive => true;
 
   @override
@@ -101,7 +102,7 @@ class TeXViewState extends State<TeXView> with AutomaticKeepAliveClientMixin {
   }
 
   void _initTeXView() {
-    if (_pageLoaded && _controller != null && getRawData(widget) != _lastData) {
+    if (_pageLoaded && getRawData(widget) != _lastData) {
       if (widget.loadingWidgetBuilder != null) _height = minHeight;
       _controller.runJavaScript("initView(${getRawData(widget)})");
       _lastData = getRawData(widget);
