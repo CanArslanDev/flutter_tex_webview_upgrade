@@ -2,6 +2,13 @@
 
 [![Pub](https://img.shields.io/pub/v/flutter_tex.svg)](https://pub.dartlang.org/packages/flutter_tex)
 
+**ATTENTION: JUST WORKING ON MATHML EDITOR**
+```yaml
+TeXView(
+renderingEngine: const TeXViewRenderingEngine.mathjax()
+//codes...
+) 
+```
 `flutter_tex` is a Flutter package used to display content containing LaTeX and MathML in your Flutter applications. The package uses a webview to render LaTeX and MathML content.
 
 ## Update
